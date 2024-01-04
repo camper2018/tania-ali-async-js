@@ -51,6 +51,31 @@ document.querySelector("#reload").addEventListener("click", () => {
 // while our generatePrimes() function is running, our program is completely unresponsive: we can't type anything, click anything, or do anything else.
 
 // Similarly asynchronous functions or tasks e.g HTTP requests, take long time to finish can also make our program non responsive.
+
+const log = document.querySelector(".event-log");
+
+document.querySelector("#xhr").addEventListener("click", () => {
+  log.textContent = "";
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener("loadend", () => {
+    log.textContent = `${log.textContent}Finished with status: ${xhr.status}`;
+  });
+
+  xhr.open(
+    "GET",
+    "https://raw.githubusercontent.com/mdn/content/main/files/en-us/_wikihistory.json",
+  );
+  xhr.send();
+  log.textContent = `${log.textContent}Started XHR request\n`;
+});
+
+document.querySelector("#reload").addEventListener("click", () => {
+  log.textContent = "";
+  document.location.reload();
+});
+
 // Solution is Callbacks or Event handlers ( a type of callback )
 
 // Callback
