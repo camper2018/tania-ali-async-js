@@ -12,7 +12,7 @@ console.log(multiply(2, 4));
 // A long-running synchronous function
 //  a very inefficient algorithm like below can take longer times to finish and can make our program completely unresponsive.
 
-const MAX_PRIME = 100000000;
+const MAX_PRIME = 10000000;
 // function that checks if the input is a prime number, returns a boolean
 function isPrime(n){
    for (let i = 2; i <= Math.sqrt(n); i++){
