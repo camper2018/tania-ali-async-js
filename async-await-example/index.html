@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Playground</title>
+</head>
+
+<body>
+    <h1>Products List</h1>
+    <div>
+        <label for="textInput">Text Input:</label>
+        <input type="text" id="textInput" placeholder="Enter some text...">
+    </div>
+    <div>
+        <label for="numberInput">Number of Products:</label>
+        <input type="number" id="numberInput" placeholder="Enter a number..." value="10">
+    </div>
+    <button id="fetchButton">Fetch Products</button>
+    <button id="asyncButton">Async Function</button>
+
+    <div>
+        <h2>Output:</h2>
+        <pre id="output"></pre>
+    </div>
+
+
+    <script>
+        // Add event listener for the fetch button
+        document.getElementById('fetchButton').addEventListener('click', async () => {
+            try {
+                let productCount = document.getElementById('numberInput');
+                productCount = productCount.value.toString();
+
+                let response = await fetch(`https://dummyjson.com/products/${productCount}`); // Fetches a sample post data
+                let data = await response.json();
+                document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error("There was an error fetching data:", error);
+            }
+        });
+
+
+        // // Add event listener for the async function button
+        document.getElementById('asyncButton').addEventListener('click', async () => {
+            try {
+                let text = document.getElementById('textInput').value;
+                let number = Number(document.getElementById('numberInput').value);
+                let result = await new Promise((resolve, reject) => {
+                    setTimeout(() => resolve(`Your text: ${text}. Your number multiplied by 2: ${number * 2}`), 1000);
+                });
+                document.getElementById('output').textContent = result;
+            } catch (error) {
+                console.error("There was an error in the async function:", error);
+            }
+        });
+    </script>
+</body>
+
+</html>
