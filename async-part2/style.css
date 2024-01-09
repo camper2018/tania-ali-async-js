@@ -1,0 +1,12 @@
+#memes-container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    border: 2px solid;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: space-around;
+}
+#memes-container div{
+    width: 200px;
+};
