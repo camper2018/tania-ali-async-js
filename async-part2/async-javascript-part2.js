@@ -172,4 +172,28 @@ const promise2 = fetchProducts();
 promise2.then((data) => console.log(data[0].name));
 
 
+/**** Few other examples ****/
+// Promise.race 
+const promise1 = fetch('https://jsonplaceholder.typicode.com/posts/1');
+const promise2 = fetch('https://jsonplaceholder.typicode.com//comments?postId=1');
+const promise3 = new Promise((resolve, reject)=> {
+  setTimeout(()=> {
+    resolve('Finished setTimeout call');
+ }, 1000)
+});
+const promise4 = Promise.resolve('Promise1 data');
+Promise.all([promise1, promise2, promise3, promise4])
+  .then((results) => {
+    console.log('All Promises Resolved:', results);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
   
+Promise.race([promise1, promise2, promise3, promise4])
+.then((result)=> {
+  console.log('First Promise Settled:', result)
+})
+.catch((error)=> {
+  console.error("Error", error);
+})
