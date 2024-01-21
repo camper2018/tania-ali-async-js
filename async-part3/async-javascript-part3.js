@@ -40,3 +40,28 @@ button.addEventListener("click", async () => {
     output.textContent = `Couldn't set alarm: ${error}`;
   }
 });
+
+/***** My example for Promise API*********/
+const fetchUser = (outcomeString) => {
+  return new Promise((resolve, reject)=> {
+    if (outcomeString === "error") {
+      reject(new Error('Failed to fetch user!'))
+    }
+     // fetch user
+    setTimeout(()=> {
+     const user = {id: 1, firstname: "George", lastname:  "Ericson"}
+     resolve(user);
+    },1000)
+  })
+}
+fetchUser()
+  .then((result)=>  console.log(`Welcome ${result.firstname} ${result.lastname}!`)
+
+  )
+  .catch(error => console.error(error));
+
+  fetchUser('error')
+  .then((result)=>  console.log(`Welcome ${result.firstname} ${result.lastname}!`)
+
+  )
+  .catch(error => console.error(error));
