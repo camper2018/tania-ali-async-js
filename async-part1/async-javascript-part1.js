@@ -114,3 +114,20 @@ When we nest callbacks like this, it can also get very hard to handle errors: of
 For these reasons, most modern asynchronous APIs don't use callbacks. Instead, the foundation of asynchronous programming in JavaScript is the Promise,
 */
   
+/* My Practice Code  for callback*/
+
+// asynchronous function that fetches logged in user info 
+function fetchUser(callback) {
+  setTimeout(() => {
+    const user = {id: 1, firstname: "George", lastname: "Ericson" }
+    callback(user);
+  }, 1000);
+}
+
+// Callback function to greet user 
+function greetUser(user) {
+  console.log(`Hello ${user.firstname} ${user.lastname}`);
+}
+
+// Calling the asynchronous function with a callback
+fetchUser(greetUser);
